@@ -1,0 +1,17 @@
+#logo {
+    max-width: 10rem;
+}
+
+* {
+    font-family: "Bebas Neue", sans-serif !important;
+}
+
+.navbar-custom {
+    background-color: #F4D504 !important;
+}
+
+header {
+    background-color: #F4D504;
+    padding: 16px 5%;
+    font-size: 1.5rem;
+}
