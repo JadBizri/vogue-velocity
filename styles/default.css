@@ -6,12 +6,52 @@
     font-family: "Bebas Neue", sans-serif !important;
 }
 
+html {
+    box-sizing: border-box;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+.slogan {
+    color: #F4D504;
+}
+
 .navbar-custom {
     background-color: #F4D504 !important;
 }
 
+header, main, footer {
+    padding: 16px 5%;
+}
+
 header {
     background-color: #F4D504;
-    padding: 16px 5%;
     font-size: 1.5rem;
+}
+
+.links {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.links a {
+    color: black;
+    text-decoration: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+footer {
+    margin-top: auto;
+    background-color: #F4D504;
 }
