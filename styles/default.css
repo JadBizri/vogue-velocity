@@ -29,8 +29,6 @@ header {
 }
 
 main {
-    display: flex;
-    flex-direction: column;
     color: #FEFEFE;
 }
 
@@ -62,5 +60,34 @@ footer {
 
 .links a {
     color: black;
+}
+
+a {
     text-decoration: none;
 }
+
+.item-container {
+    border-radius: 0.3em;
+    width: 250px;
+    color: black;
+    border-radius: 0.3em;
+    box-sizing: content-box;
+    background-color: var(--main-yellow);
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.item-container:hover {
+    box-shadow: 0 0 0.5em var(--main-yellow);
+}
+
+.item-container > figure > img {
+    border-top-left-radius: 0.3em;
+    border-top-right-radius: 0.3em;
+    float: left;
+    width: 250px;
+    height: 250px;
+    object-fit: scale-down;
+    background: #358683;
+    background: radial-gradient(at center, #358683, #8D6D39);
+};
