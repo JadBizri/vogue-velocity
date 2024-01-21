@@ -17,117 +17,74 @@
     <title>Vogue Velocity</title>
 </head>
 
-<body style="background-color: #000000;">
+<body>
 
     <header>
-
-        <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navbar-custom">
-            <div class="container-fluid p-0">
-                <div class="container p-0">
-                    <a class="navbar-brand nav-link" href="./">
-                        <img src="./../images/logo.png" id="logo" alt="Velocity Vogue">
-                    </a>
-                </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item pe-3">
-                            <a class="nav-link" aria-current="page" href="#">Browse</a>
-                        </li>
-                        <li class="nav-item pe-3">
-                            <a class="nav-link" href="#">Sell</a>
-                        </li>
-                        <li class="nav-item pe-3">
-                            <a class="nav-link" href="#">Register</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Login</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navbar-custom justify-content-between">
+            <div>
+                <a class="navbar-brand nav-link" href="./">
+                    <img src="./../images/logo.png" id="logo" alt="Velocity Vogue">
+                </a>
+            </div>
+            <form class="inline-form d-flex">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-dark my-2 my-sm-0 ms-1 buttons-yellow" type="submit">Search</button>
+            </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" style="flex-grow: 0;">
+                <ul class="navbar-nav">
+                    <li class="nav-item pe-3">
+                        <a class="nav-link" aria-current="page" href="#">Browse</a>
+                    </li>
+                    <li class="nav-item pe-3">
+                        <a class="nav-link" href="#">Sell</a>
+                    </li>
+                    <li class="nav-item pe-3">
+                        <a class="nav-link" href="#">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                </ul>
             </div>
         </nav>
-
     </header>
 
     <main>
         <div class="container">
             <div class="row align-items-center justify-content-between">
-                <div class="col-12 col-md-8 col-sm-9 d-flex flex-column p-3 rounded"
-                    style="border-color: #F4D504 !important;">
+                <div class="col-12 col-md-8 col-sm-9 d-flex flex-column p-3 rounded">
                     <h3>Vogue Velocity,
                         your go-to marketplace for buying and selling chic and trendy
                         clothing. <span class="slogan">Unleash Your Vogue Velocity</span> and experience the dynamic
                         blend of trendsetting fashion and effortless selling.
                     </h3>
-                    <button class="btn btn-dark p-3 align-self-end" style="color: #F4D504;">Start Shopping</button>
-                    <img src="./../images/motivational.jpg" class="text-center img-fluid rounded p-0 mt-1" width="600"
-                        id="motivational" alt="go up and never stop">
+                    <button class="btn btn-dark p-3 align-self-end buttons-dark">Start Shopping</button>
+                    <img src="./../images/logo_white.png" class="img-fluid rounded p-0 mt-5 align-self-center"
+                        width="350" alt="the logo">
                 </div>
-                <div class="col-12 col-md-3 col-sm-8">
+                <figure class="col-12 col-md-3 col-sm-8">
                     <img src="./../images/main-model.jpg" class="img-fluid rounded p-0 mt-1" width="350" id="main-model"
                         alt="a model">
-                </div>
+                    <figcaption>
+                        <h4><span class="slogan">FEATURED</span>: <small class="">Name & Price goes here</small></h4>
+                    </figcaption>
+                </figure>
             </div>
         </div>
-        <div class="text-center">
-            <img src="./../images/logo_white.png" class="img-fluid rounded p-0 mt-1" width="350" id="main-model"
-                alt="a model">
-        </div>
-
-
-        <!-- <div class="container mt-3">
-            <div class="row align-items-center justify-content-between">
-                <div class="col-12 col-md-6 col-sm-8">
-                    <img src="./../images/motivational.jpg" class="img-fluid rounded p-0 mt-1" width="600" id="motivational" alt="go up and never stop">
-                </div>
-                <div class="col-12 col-md-6 col-sm-9 d-flex flex-column  p-3 rounded" style="border-color: #F4D504 !important;">
-                    <div>
-                        <h3>Selling:</h3>
-                        <ol>
-                            <h4><li><span class="slogan">Snap & List:</span> Capture great photos of your pre-loved or brand-new clothing items. List them effortlessly on Vogue Velocity.</li></h4>
-                            <h4><li><span class="slogan">Set Your Price:</span> Determine your asking price and set the terms for potential buyers. Our intuitive interface makes it a breeze.</li></h4>
-                            <h4><li><span class="slogan">Connect with Buyers:</span> Engage with fashion enthusiasts interested in your items. Answer questions and provide additional details to make the selling process seamless.</li></h4>
-                            <h4><li><span class="slogan">Transaction Made Easy:</span> Once your item finds a new home, our secure transaction system ensures a hassle-free process for both parties.</li></h4>
-                        </ol>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container mt-3">
-            <div class="row align-items-center justify-content-between">
-                
-                <div class="col-12 col-md-6 col-sm-9 d-flex flex-column  p-3 rounded" style="border-color: #F4D504 !important;">
-                    <div>
-                        <h3>Buying:</h3>
-                        <ol>
-                            <h4><li><span class="slogan">Explore Trends:</span> Browse our curated collections and discover the latest fashion trends.</li></h4>
-                            <h4><li><span class="slogan">Select Your Style:</span> Choose your favorite clothing items and add them to your shopping bag with a simple click.</li></h4>
-                            <h4><li><span class="slogan">Secure Checkout:</span> Head to the checkout page, where a secure and easy payment process ensures a smooth shopping experience.</li></h4>
-                            <h4><li><span class="slogan">Delivery Delight:</span> Sit back and relax as your stylish finds make their way to your doorstep. We deliver fashion at the speed of trends.</li></h4>
-                        </ol>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-sm-8">
-                    <img src="./../images/shoes.jpg" class="img-fluid rounded mt-1" id="shoes" width="600" alt="some shoes">
-                </div>
-            </div>
-        </div> -->
-
     </main>
 
     <footer class="d-flex align-items-center justify-content-between" style="color: black;">
         <p class="p-0 m-0">&copy; 2024 Velocity Vogue</p>
         <div class="links">
             <a target="_blank" href="https://github.com/JadBizri">
-                <h4><i class="bi bi-github"></i></h4>
+                <i class="bi bi-github h4"></i>
             </a>
-            <a target="_blank" href="https://linkedin/in/jadbizri">
-                <h4><i class="bi bi-linkedin"></i></h4>
+            <a target="_blank" href="https://linkedin.com/in/jadbizri">
+                <i class="bi bi-linkedin h4"></i>
             </a>
         </div>
     </footer>

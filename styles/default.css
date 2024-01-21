@@ -1,5 +1,5 @@
-#logo {
-    max-width: 10rem;
+:root {
+    --main-yellow: #F4D504;
 }
 
 * {
@@ -10,27 +10,48 @@ html {
     box-sizing: border-box;
 }
 
-main {
+body {
     display: flex;
     flex-direction: column;
-    color: white;
+    min-height: 100vh;
+    background-color: black;
 }
 
-.slogan {
-    color: #F4D504;
-}
-
-.navbar-custom {
-    background-color: #F4D504 !important;
-}
-
-header, main, footer {
+header,
+main,
+footer {
     padding: 16px 5%;
 }
 
 header {
-    background-color: #F4D504;
+    background-color: var(--main-yellow);
     font-size: 1.5rem;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    color: #FEFEFE;
+}
+
+footer {
+    margin-top: auto;
+    background-color: var(--main-yellow);
+}
+
+#logo {
+    max-width: 10rem;
+}
+
+.slogan,
+.buttons-dark,
+.buttons-dark:hover,
+.buttons-yellow:hover {
+    color: var(--main-yellow);
+}
+
+.navbar-custom {
+    background-color: var(--main-yellow) !important;
 }
 
 .links {
@@ -42,16 +63,4 @@ header {
 .links a {
     color: black;
     text-decoration: none;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-
-}
-
-footer {
-    margin-top: auto;
-    background-color: #F4D504;
 }
