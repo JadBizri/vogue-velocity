@@ -27,6 +27,7 @@ Vogue Velocity Marketplace is an immersive web app project utilizing a stack of 
 # Image Credits:
   - Vogue Velocity Logo:
     - Made with Adobe Logo Maker
+    - https://www.adobe.com/express/create/logo/ 
   - Image 1:
       - Description: AF1 Nike x Carhartt Shoes
       - Creator: Maksim Larin on Unsplash.
