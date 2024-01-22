@@ -1,5 +1,6 @@
 :root {
     --main-yellow: #F4D504;
+    --wow-red: #FF4136;
 }
 
 * {
@@ -41,6 +42,10 @@ footer {
     max-width: 10rem;
 }
 
+.red {
+    color: var(--wow-red);
+}
+
 .slogan,
 .buttons-dark,
 .buttons-dark:hover,
@@ -62,9 +67,15 @@ footer {
     color: black;
 }
 
-a {
+a,
+.link-container {
     text-decoration: none;
     transition: transform 0.2s !important;
+    cursor: pointer;
+}
+
+.link-container:hover {
+    transform: scale(1.07);
 }
 
 a:hover {
@@ -95,4 +106,4 @@ a:hover {
     object-fit: scale-down;
     background: #358683;
     background: radial-gradient(at center, #358683, #8D6D39);
-};
+}
