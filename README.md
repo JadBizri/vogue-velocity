@@ -38,4 +38,18 @@ Vogue Velocity Marketplace is an immersive web app project utilizing a stack of 
       - Description: Model in Yellow Tracksuit
       - Creator: Dom Hill on Unsplash.
       - Source: https://unsplash.com/photos/woman-in-yellow-tracksuit-standing-on-basketball-court-side-nimElTcTNyY/
-  
+  - Image 4:
+      - Description: Black T-Shirt "Yahweh Yireh"
+      - Creator: Faith & Yarn on Unsplash.
+      - Source: https://unsplash.com/photos/black-crew-neck-t-shirt-Wr0TpKqf26s/
+  - Image 5:
+      - Description: White High-Top Converse Shoes
+      - Creator: Patrick Hodskins on Unsplash.
+      - Source: https://unsplash.com/photos/unpaired-high-top-shoe-55PEl8GQ-zU/
+  - Image 6:
+      - Description: Black Air Force 1 Shoes
+      - Creator: Andres Jasso on Unsplash.
+      - Source: https://unsplash.com/photos/unpaired-off-white-x-nike-air-force-1-low-top-sneaker-PqbL_mxmaUE/
+  - Image 7:
+      - Description: Air Jordan 1 Black and Grey
+      - Creator: Me
