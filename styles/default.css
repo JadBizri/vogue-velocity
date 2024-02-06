@@ -36,6 +36,7 @@ main {
 footer {
     margin-top: auto;
     background-color: var(--main-yellow);
+    color: black;
 }
 
 #logo {
@@ -55,6 +56,10 @@ footer {
 
 .navbar-custom {
     background-color: var(--main-yellow) !important;
+}
+
+.navigation {
+    flex-grow: 0;
 }
 
 .links {
