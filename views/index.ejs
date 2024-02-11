@@ -1,0 +1,29 @@
+<%- include('./partials/header.ejs')%>
+
+    <main>
+        <div class="row align-items-center justify-content-between">
+            <div class="col-12 col-md-8 col-sm-9 d-flex flex-column p-3 rounded">
+                <h3>Vogue Velocity,
+                    your go-to marketplace for buying and selling chic and trendy
+                    clothing. <span class="slogan">Unleash Your Vogue Velocity</span> and experience the dynamic
+                    blend of trendsetting fashion and effortless selling.
+                </h3>
+                <form class="align-self-end" action="/items">
+                    <button type="submit" class="btn btn-dark p-3 buttons-dark">Start Shopping</button>
+                </form>
+                <img src="./../images/logo_white.png" class="img-fluid rounded p-0 mt-5 align-self-center" width="350"
+                    alt="the logo">
+            </div>
+            <figure class="col-12 col-md-3 col-sm-8 link-container">
+                <img src="./../images/main-model.jpg" class="img-fluid rounded p-0 mt-1" width="350" id="main-model"
+                    alt="a model">
+                <figcaption>
+                    <h4><span class="slogan">FEATURED</span>: <small>Yellow Tracksuit - $120.99</small></h4>
+                </figcaption>
+            </figure>
+        </div>
+    </main>
+
+    <script src="./../scripts/default.js"></script>
+
+    <%- include('./partials/footer.ejs')%>
