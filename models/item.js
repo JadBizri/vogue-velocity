@@ -70,9 +70,16 @@ const items = [
 ];
 
 exports.find = () => items;
+
 exports.findById = id => items.find(item => item.id === id);
+
 exports.findByPriceHighToLow = () => {
     return items.sort((a, b) => b.price - a.price);
+};
+
+//find one random item to be featured
+exports.findRandom = () => {
+    return items[Math.floor(Math.random() * items.length)];
 };
 
 exports.save = function(item) {
@@ -96,7 +103,7 @@ exports.updateById = function(id, newItem) {
         return true;
     }
     else return false;
-}
+};
 
 exports.deleteById = function(id) {
     let index = items.findIndex(item => item.id === id);
@@ -105,4 +112,4 @@ exports.deleteById = function(id) {
         return true;
     }
     else return false;
-}
+};

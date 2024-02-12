@@ -11,19 +11,16 @@
                 <form class="align-self-end" action="/items">
                     <button type="submit" class="btn btn-dark p-3 buttons-dark">Start Shopping</button>
                 </form>
-                <img src="./../images/logo_white.png" class="img-fluid rounded p-0 mt-5 align-self-center" width="350"
+                <img src="/images/logo_white.png" class="img-fluid rounded p-0 mt-5 align-self-center" width="350"
                     alt="the logo">
             </div>
-            <figure class="col-12 col-md-3 col-sm-8 link-container">
-                <img src="./../images/main-model.jpg" class="img-fluid rounded p-0 mt-1" width="350" id="main-model"
-                    alt="a model">
+            <figure class="col-12 col-md-3 col-sm-8 link-container" onclick="window.location.href = '/items/' + '<%= item.id %>';">
+                <img src="<%= item.image %>" class="img-fluid rounded p-0 mt-1" width="350">
                 <figcaption>
-                    <h4><span class="slogan">FEATURED</span>: <small>Yellow Tracksuit - $120.99</small></h4>
+                    <h4><span class="slogan">FEATURED</span>: <small><%= item.title %> - $<%= (Math.round(item.price * 100) / 100).toFixed(2) %></small></h4>
                 </figcaption>
             </figure>
         </div>
     </main>
-
-    <script src="/scripts/default.js"></script>
 
     <%- include('./partials/footer.ejs')%>

@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const itemRoutes = require('./routes/itemRoutes');
+const model = require('./models/item');
 
 //create app
 const app = express();
@@ -20,7 +21,7 @@ app.use(methodOverride('_method'));
 
 //set up routes
 app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', { item: model.findRandom() });
 });
 
 app.use('/items', itemRoutes);
