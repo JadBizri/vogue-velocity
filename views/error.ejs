@@ -1,7 +1,6 @@
 <%- include('./partials/header.ejs')%>
-
-<main>
-    <h1>ERROR</h1>
-</main>
-
+    <main class="text-center m-auto">
+        <h1 class="slogan">Code <%= error.status%> Error</h1>
+        <h3><%= error.message%></h3>
+    </main>
 <%- include('./partials/footer.ejs')%>
