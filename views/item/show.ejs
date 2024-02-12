@@ -1,73 +1,20 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./../styles/default.css">
-    <title>Vogue Velocity</title>
-</head>
+<main class="d-flex align-items-center flex-wrap m-auto">
+    <div class="me-5">
+        <img class="rounded img-fluid" src="<%= item.image %>" width="350">
+    </div>
+    <div>
+        <h1 class="slogan"><%= item.title %></h1>
+        <p class="h4">Condition: <span class="red"><u><%= item.condition %></u></span></p>
+        <p class="h4">Price: $<%= (Math.round(item.price * 100) / 100).toFixed(2) %> | Offers: <%= item.totalOffers %></p>
+        <p class="h4">Seller: <%= item.seller %></p>
+        <p class="h6"><%= item.details %></p>
+        <form>
+            <button class="btn buttons-dark btn-dark me-3" type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit">Edit</button>
+            <button class="btn buttons-dark btn-dark" type="submit" formmethod="POST" formaction="/items/<%= item.id%>?_method=DELETE">Delete</button>
+        </form>
+    </div>
+</main>
 
-<body>
-
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navbar-custom justify-content-between">
-            <div>
-                <a class="navbar-brand nav-link" href="./">
-                    <img src="./../images/logo.png" id="logo" alt="Velocity Vogue">
-                </a>
-            </div>
-            <form class="inline-form d-flex">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0 ms-1 buttons-yellow" type="submit">Search</button>
-            </form>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navigation collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" aria-current="page" href="./items.html">Browse</a>
-                    </li>
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" href="./new.html">Sell</a>
-                    </li>
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" href="#">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header> -->
-
-    <%- include('../partials/header.ejs')%>
-
-    <main class="d-flex align-items-center flex-wrap m-auto">
-        <div class="me-5">
-            <img class="rounded img-fluid" src="./../images/main-model.jpg" width="350" alt="a model">
-        </div>
-        <div>
-            <h1 class="slogan">Yellow Tracksuit</h1>
-            <p class="h4">Condition: <span class="red"><u>New</u></span></p>
-            <p class="h4">Price: $120.99 | Offers: 8</p>
-            <p class="h4">Seller: Vogue Velocity</p>
-            <p class="h6">A 2 piece yellow tracksuit. Size: Large</p>
-            <button class="btn buttons-dark btn-dark me-3">Edit</button>
-            <button class="btn buttons-dark btn-dark">Delete</button>
-        </div>
-    </main>
-
-    <%- include('../partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>

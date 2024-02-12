@@ -1,159 +1,29 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs')%>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./../styles/default.css">
-    <title>Vogue Velocity</title>
-</head>
+<main class="d-flex align-content-between flex-wrap justify-content-center">
 
-<body>
+    <% items.forEach(item => { %>
 
-    <header class="mb-5">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary p-0 navbar-custom justify-content-between">
-            <div>
-                <a class="navbar-brand nav-link" href="./">
-                    <img src="./../images/logo.png" id="logo" alt="Velocity Vogue">
-                </a>
-            </div>
-            <form class="inline-form d-flex">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark my-2 my-sm-0 ms-1 buttons-yellow" type="submit">Search</button>
-            </form>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navigation collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item pe-3">
-                        <a class="nav-link active" aria-current="page" href="#">Browse</a>
-                    </li>
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" href="./new.html">Sell</a>
-                    </li>
-                    <li class="nav-item pe-3">
-                        <a class="nav-link" href="./register.html">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./login.html">Login</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header> -->
-    <%- include('../partials/header.ejs')%>
-
-    <main class="d-flex align-content-between flex-wrap justify-content-center">
-
-            <div class="item-container m-4">
-                <figure>
-                    <img src="./../images/shoes.jpg" width="200" alt="yellow nike shoes">
-                    <figcaption class="ps-2 h5 pe-2">Nike x Carhartt Air Force 1</figcaption>
-                </figure>
-                <div class="inner-item ps-2 pe-2">
-                    <u class="m-0 red">new</u>
-                    <p class="m-0">Sold by: Vogue Velocity</p>
-                    <hr class="w-75 m-auto">
-                    <div class="d-flex justify-content-between">
-                        <p class="m-0">$267.00</p>
-                        <p class="m-0 red">8 Offers</p>
-                    </div>
-                </div>
-            </div>
-
-        <div class="item-container m-4">
+        <div class="item-container m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
             <figure>
-                <img src="./../images/jordans.jpg" width="200" alt="black and grey jordans shoes">
-                <figcaption class="ps-2 h5 pe-2">Air Jordan 1 Mid SE Craft</figcaption>
+                <img src="<%= item.image %>" width="200">
+                <figcaption class="ps-2 h5 pe-2"><%= item.title %></figcaption>
             </figure>
             <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red">Used - Like New</u>
-                <p class="m-0">Sold by: Mo Salah</p>
+                <u class="m-0 red"><%= item.condition %></u>
+                <p class="m-0">Sold by: <%= item.seller %></p>
                 <hr class="w-75 m-auto">
                 <div class="d-flex justify-content-between">
-                    <p class="m-0">$99.99</p>
-                    <p class="m-0 red">2 Offers</p>
+                    <p class="m-0">$<%= (Math.round(item.price * 100) / 100).toFixed(2) %></p>
+                    <p class="m-0 red"><%= item.totalOffers %> Offers</p>
                 </div>
             </div>
         </div>
 
-        <div class="item-container m-4">
-            <figure>
-                <img src="./../images/aj1-black.jpg" width="200" alt="black nike air force 1 shoes">
-                <figcaption class="ps-2 h5 pe-2">Nike Black Air Force 1</figcaption>
-            </figure>
-            <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red">new</u>
-                <p class="m-0">Sold by: Vogue Velocity</p>
-                <hr class="w-75 m-auto">
-                <div class="d-flex justify-content-between">
-                    <p class="m-0">$160.00</p>
-                    <p class="m-0 red">0 Offers</p>
-                </div>
-            </div>
-        </div>
+    <% }); %>
 
-        <div class="item-container m-4">
-            <figure>
-                <img src="./../images/converse.jpg" width="200" alt="white converse shoes">
-                <figcaption class="ps-2 h5 pe-2">White HighTop Converse</figcaption>
-            </figure>
-            <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red">Used - Good</u>
-                <p class="m-0">Sold by: Jayden Cobly</p>
-                <hr class="w-75 m-auto">
-                <div class="d-flex justify-content-between">
-                    <p class="m-0">$37.00</p>
-                    <p class="m-0 red">1 Offer</p>
-                </div>
-            </div>
-        </div>
+</main>
 
-        <div class="item-container m-4">
-            <figure>
-                <img src="./../images/black-shirt.jpg" width="200" alt="black t-shirt">
-                <figcaption class="ps-2 h5 pe-2">Black T-Shirt "Yahweh Yireh"</figcaption>
-            </figure>
-            <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red">Used - Good</u>
-                <p class="m-0">Sold by: Adam Horowitz</p>
-                <hr class="w-75 m-auto">
-                <div class="d-flex justify-content-between">
-                    <p class="m-0">$14.00</p>
-                    <p class="m-0 red">1 Offer</p>
-                </div>
-            </div>
-        </div>
+<script src="/scripts/default.js"></script>
 
-        <div class="item-container m-4">
-            <figure>
-                <img src="./../images/main-model.jpg" width="200" alt="model wearing yellow tracksuit">
-                <figcaption class="ps-2 h5 pe-2">Yellow Tracksuit</figcaption>
-            </figure>
-            <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red">new</u>
-                <p class="m-0">Sold by: Vogue Velocity</p>
-                <hr class="w-75 m-auto">
-                <div class="d-flex justify-content-between">
-                    <p class="m-0">$120.99</p>
-                    <p class="m-0 red">2 Offers</p>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <script src="../scripts/default.js"></script>
-
-    <%- include('../partials/footer.ejs')%>
+<%- include('../partials/footer.ejs')%>

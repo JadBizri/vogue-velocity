@@ -1,0 +1,57 @@
+<%- include('../partials/header.ejs')%>
+
+    <main class="d-flex align-items-center justify-content-between flex-wrap">
+
+        <div>
+            <img src="/images/logo_white.png" class="img-fluid rounded" width="350" alt="logo">
+        </div>
+
+        <div>
+            <h2 class="slogan text-center">Edit Item</h2>
+
+            <form class="border rounded border-warning p-3 w-100" action="#">
+                <div class="mb-3">
+                    <label class="form-label" for="condition">Condition</label>
+                    <select class="form-select" name="condition" id="condition" required>
+                        <option selected disabled value="">Select product condition</option>
+                        <option value="new">New</option>
+                        <option value="like-new">Used - Like New</option>
+                        <option value="good">Used - Good</option>
+                        <option value="fair">Used - Fair</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="title">Title</label>
+                    <input class="form-control" placeholder="Title" type="text" value="<%= item.title %>" name="title" id="title" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="seller">Seller</label>
+                    <input class="form-control" placeholder="Seller" type="text" value="<%= item.seller %>" name="seller" id="seller" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Price</label>
+                    <input class="form-control" placeholder="0.00" type="number" value="<%= item.price %>" name="price" id="price" step="0.01"
+                        required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" placeholder="Add any details about your product" name="description"
+                        id="description" rows="3" required><%= item.details %></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Image</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+
+                <button type="submit" class="buttons-dark btn btn-dark w-100">Submit</button>
+            </form>
+        </div>
+
+        <div>
+            <img src="/images/motivational.jpg" class="img-fluid rounded" width="350" alt="go up and never stop">
+        </div>
+    </main>
+
+<%- include('../partials/footer.ejs')%>

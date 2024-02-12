@@ -7,7 +7,7 @@ exports.index = (req, res) => {
 };
 
 exports.new = (req, res) => {
-    res.render('./item/new');
+    res.render('item/new');
 };
 
 exports.create = (req, res) => {
