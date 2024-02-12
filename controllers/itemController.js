@@ -2,7 +2,7 @@ const { parse } = require('uuid');
 const model = require('../models/item');
 
 exports.index = (req, res) => {
-    let items = model.find();
+    let items = model.findByPriceHighToLow();
     res.render('item/index', { items });
 };
 
@@ -21,6 +21,7 @@ exports.create = (req, res, next) => {
     else {
         item.image = '/images/' + req.file.filename;
         item.totalOffers = 0;
+        item.active = true;
         model.save(item);
         res.redirect('/items');
     }

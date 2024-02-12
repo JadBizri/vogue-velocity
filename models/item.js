@@ -71,6 +71,9 @@ const items = [
 
 exports.find = () => items;
 exports.findById = id => items.find(item => item.id === id);
+exports.findByPriceHighToLow = () => {
+    return items.sort((a, b) => b.price - a.price);
+};
 
 exports.save = function(item) {
     item.id = uuidv4();
