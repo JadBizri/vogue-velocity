@@ -3,7 +3,7 @@
     <main class="d-flex align-items-center justify-content-between flex-wrap">
 
         <div>
-            <img src="/images/logo_white.png" class="img-fluid rounded" width="350" alt="logo">
+            <img src="<%= item.image %>" class="img-fluid rounded" width="350">
         </div>
 
         <div>
@@ -36,13 +36,13 @@
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" placeholder="Add any details about your product" name="description"
+                    <textarea class="form-control" placeholder="Add any details about your product" name="details"
                         id="description" rows="3" required><%= item.details %></textarea>
                 </div>
 
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Image</label>
-                    <input class="form-control" type="file" id="formFile">
+                    <input class="form-control" type="file" id="formFile" name="image">
                 </div>
 
                 <button type="submit" class="buttons-dark btn btn-dark w-100">Submit</button>
@@ -50,7 +50,7 @@
         </div>
 
         <div>
-            <img src="/images/motivational.jpg" class="img-fluid rounded" width="350" alt="go up and never stop">
+            <img src="/images/logo_white.png" class="img-fluid rounded" width="350" alt="logo">
         </div>
     </main>
 

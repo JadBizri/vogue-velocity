@@ -4,7 +4,7 @@
 <main class="d-flex align-items-center justify-content-between flex-wrap">
 
     <div>
-        <img src="./../images/logo_white.png" class="img-fluid rounded" width="350" alt="logo">
+        <img src="/images/motivational.jpg" class="img-fluid rounded" width="350" alt="go up and never stop">
     </div>        
 
     <div>
@@ -13,7 +13,7 @@
             <p class="h5">Simply fill out this form and upload a picture of your item!</p>
         </div>
 
-        <form class="border rounded border-warning p-3 w-100" action="#">
+        <form class="border rounded border-warning p-3 w-100" method="POST" enctype="multipart/form-data" action="/items">
             <div class="mb-3">
                 <label class="form-label" for="condition">Condition</label>
                 <select class="form-select" name="condition" id="condition" required>
@@ -40,13 +40,13 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
-                <textarea class="form-control" placeholder="Add any details about your product" name="description"
+                <textarea class="form-control" placeholder="Add any details about your product" name="details"
                     id="description" rows="3" required></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="formFile" class="form-label">Image</label>
-                <input class="form-control" type="file" id="formFile" required>
+                <input class="form-control" type="file" id="formFile" name="image" required>
             </div>
 
             <button type="submit" class="buttons-dark btn btn-dark w-100">Submit</button>
@@ -54,7 +54,7 @@
     </div>
 
     <div>
-        <img src="./../images/motivational.jpg" class="img-fluid rounded" width="350" alt="go up and never stop">
+        <img src="/images/logo_white.png" class="img-fluid rounded" width="350" alt="logo">
     </div>  
 </main>
 

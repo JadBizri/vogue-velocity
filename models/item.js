@@ -74,7 +74,6 @@ exports.findById = id => items.find(item => item.id === id);
 
 exports.save = function(item) {
     item.id = uuidv4();
-    item.createdAt = DateTime.now().toLocaleString(DateTime.DATETIME_SHORT);
     items.push(item);
 };
 
@@ -82,8 +81,15 @@ exports.updateById = function(id, newItem) {
     let item = stories.find(item => item.id === id);
     if (item) {
         item.title = newItem.title;
-        item.content = newItem.content;
-        item.author = newItem.author;
+        item.seller = newItem.seller;
+        item.condition = newItem.condition;
+        item.price = newItem.price;
+        item.details = newItem.details;
+        if (newItem.image)
+        {
+            item.image = newItem.image;
+        }
+        item.totalOffers = newItem.totalOffers;
         return true;
     }
     else return false;

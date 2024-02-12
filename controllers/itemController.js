@@ -10,10 +10,20 @@ exports.new = (req, res) => {
     res.render('item/new');
 };
 
-exports.create = (req, res) => {
+exports.create = (req, res, next) => {
     let item = req.body;
-    model.save(item);
-    res.redirect('/items');
+
+    if (!item.title || !item.seller || !item.condition || !item.price || !item.details || !req.file) {
+        let err = new Error(`Bad Request: Missing parameters in request body`);
+        err.status = 400;
+        next(err);
+    }
+    else {
+        item.image = '/images/' + req.file.filename;
+        item.totalOffers = 0;
+        model.save(item);
+        res.redirect('/items');
+    }
 }
 
 exports.show = (req, res, next) => {
