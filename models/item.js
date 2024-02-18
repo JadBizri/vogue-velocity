@@ -88,7 +88,7 @@ exports.save = function(item) {
 };
 
 exports.updateById = function(id, newItem) {
-    let item = stories.find(item => item.id === id);
+    let item = items.find(item => item.id === id);
     if (item) {
         item.title = newItem.title;
         item.seller = newItem.seller;

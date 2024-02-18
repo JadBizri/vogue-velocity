@@ -9,7 +9,7 @@
         <div>
             <h2 class="slogan text-center">Edit Item</h2>
 
-            <form class="border rounded border-warning p-3 w-100" action="#">
+            <form class="border rounded border-warning p-3 w-100" method="POST" action="/items/<%= item.id%>?_method=PUT">
                 <div class="mb-3">
                     <label class="form-label" for="condition">Condition</label>
                     <select class="form-select" name="condition" id="condition" required>
