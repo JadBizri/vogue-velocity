@@ -1,4 +1,3 @@
-const { parse } = require('uuid');
 const model = require('../models/item');
 
 exports.index = (req, res) => {
