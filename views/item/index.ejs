@@ -10,7 +10,18 @@
                 <figcaption class="ps-2 h5 pe-2"><%= item.title %></figcaption>
             </figure>
             <div class="inner-item ps-2 pe-2">
-                <u class="m-0 red"><%= item.condition %></u>
+                <!-- if statements to format condition string based on value -->
+                <% if (item.condition === 'new') { %>
+                    <u class="m-0 red">New</u>
+                <% } else if (item.condition === 'like-new') { %>
+                    <u class="m-0 red">Used - Like New</u>
+                <% } else if (item.condition === 'good') { %>
+                    <u class="m-0 red">Used - Good</u>
+                <% } else if (item.condition === 'fair') { %>
+                    <u class="m-0 red">Used - Fair</u>
+                <% } else { %>
+                    <u class="m-0 red">Other</u>
+                <% } %>
                 <p class="m-0">Sold by: <%= item.seller %></p>
                 <hr class="w-75 m-auto">
                 <div class="d-flex justify-content-between">

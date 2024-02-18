@@ -13,12 +13,13 @@
                 <div class="mb-3">
                     <label class="form-label" for="condition">Condition</label>
                     <select class="form-select" name="condition" id="condition" required>
-                        <option selected disabled value="">Select product condition</option>
-                        <option value="new">New</option>
-                        <option value="like-new">Used - Like New</option>
-                        <option value="good">Used - Good</option>
-                        <option value="fair">Used - Fair</option>
-                        <option value="other">Other</option>
+                        <option disabled value="">Select product condition</option>
+                        <!-- if condition is 'new', then option value='new' -->
+                        <option value="new" <%= item.condition === 'new' ? 'selected' : '' %>>New</option>
+                        <option value="like-new" <%= item.condition === 'like-new' ? 'selected' : '' %>>Used - Like New</option>
+                        <option value="good" <%= item.condition === 'good' ? 'selected' : '' %>>Used - Good</option>
+                        <option value="fair" <%= item.condition === 'fair' ? 'selected' : '' %>>Used - Fair</option>
+                        <option value="other" <%= item.condition === 'other' ? 'selected' : '' %>>Other</option>
                     </select>
                 </div>
                 <div class="mb-3">

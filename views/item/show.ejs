@@ -6,7 +6,18 @@
     </div>
     <div>
         <h1 class="slogan"><%= item.title %></h1>
-        <p class="h4">Condition: <span class="red"><u><%= item.condition %></u></span></p>
+        <!-- if statements to format condition string based on value -->
+        <% if (item.condition === 'new') { %>
+            <p class="h4">Condition: <span class="red"><u>New</u></span></p>
+        <% } else if (item.condition === 'like-new') { %>
+            <p class="h4">Condition: <span class="red"><u>Used - Like New</u></span></p>
+        <% } else if (item.condition === 'good') { %>
+            <p class="h4">Condition: <span class="red"><u>Used - Good</u></span></p>
+        <% } else if (item.condition === 'fair') { %>
+            <p class="h4">Condition: <span class="red"><u>Used - Fair</u></span></p>
+        <% } else { %>
+            <p class="h4">Condition: <span class="red"><u>Other</u></span></p>
+        <% } %>
         <p class="h4">Price: $<%= (Math.round(item.price * 100) / 100).toFixed(2) %> | Offers: <%= item.totalOffers %></p>
         <p class="h4">Seller: <%= item.seller %></p>
         <p class="h6"><%= item.details %></p>
