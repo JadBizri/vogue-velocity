@@ -1,7 +1,11 @@
 <%- include('../partials/header.ejs')%>
 
-<main class="d-flex align-content-between flex-wrap justify-content-center">
-
+    <!-- if items is empty -->
+    <% if (items.length === 0) { %>
+        <main class="text-center m-auto">
+        <h1 class="slogan">No items found!</h1>
+    <% } else { %>
+    <main class="d-flex align-content-between flex-wrap justify-content-center">
     <% items.forEach(item => { %>
 
         <div class="item-container m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
@@ -31,7 +35,7 @@
             </div>
         </div>
 
-    <% }); %>
+    <% }); }%>
 
 </main>
 

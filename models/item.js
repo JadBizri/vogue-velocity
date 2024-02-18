@@ -113,3 +113,14 @@ exports.deleteById = function(id) {
     }
     else return false;
 };
+
+//for search functionality
+exports.showByQuery = function(query) {
+    let results = items.filter(item => {
+        if (item.active === false) {
+            return false;
+        }
+        return item.title.toLowerCase().includes(query.toLowerCase()) || item.seller.toLowerCase().includes(query.toLowerCase()) || item.details.toLowerCase().includes(query.toLowerCase());
+    });    
+    return results;
+}

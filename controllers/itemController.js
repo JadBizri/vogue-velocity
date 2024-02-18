@@ -75,3 +75,9 @@ exports.delete = (req, res, next) => {
         next(err);
     }
 }
+
+exports.search = (req, res) => {
+    let query = req.query.query;
+    let results = model.showByQuery(query);
+    res.render('item/index', { items: results });
+}

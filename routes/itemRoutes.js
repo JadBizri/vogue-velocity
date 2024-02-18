@@ -15,6 +15,8 @@ const upload = multer({ storage });
 
 router.get('/', controller.index);
 
+router.get('/search', controller.search);
+
 router.get('/new', controller.new);
 
 router.post('/', upload.single('image'), controller.create);

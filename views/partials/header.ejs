@@ -26,8 +26,8 @@
                     <img src="/images/logo.png" id="logo" alt="Velocity Vogue">
                 </a>
             </div>
-            <form class="inline-form d-flex">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="inline-form d-flex" action="/items/search" method="GET">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="query" required>
                 <button class="btn btn-outline-dark my-2 my-sm-0 ms-1 buttons-yellow" type="submit">Search</button>
             </form>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
