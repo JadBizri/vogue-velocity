@@ -21,8 +21,8 @@ const itemSchema = new Schema({
     },
     description: {
         type: String,
-        required: [true, 'Content is required'],
-        minLength: [10, 'Content must be at least 10 characters']
+        required: [true, 'Description is required'],
+        minLength: [6, 'Description must be at least 6 characters']
     },
     image: {
         type: String,
