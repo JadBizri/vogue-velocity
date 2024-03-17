@@ -14,12 +14,17 @@
                 <img src="/images/logo_white.png" class="img-fluid rounded p-0 mt-5 align-self-center" width="350"
                     alt="the logo">
             </div>
-            <figure class="col-12 col-md-3 col-sm-8 link-container" onclick="window.location.href = '/items/' + '<%= item.id %>';">
-                <img src="<%= item.image %>" class="img-fluid rounded p-0 mt-1" width="350">
-                <figcaption>
-                    <h4><span class="slogan">FEATURED</span>: <small><%= item.title %> - $<%= (Math.round(item.price * 100) / 100).toFixed(2) %></small></h4>
-                </figcaption>
-            </figure>
+            <!-- if item exists -->
+            <% if (item.title) { %>
+                <figure class="col-12 col-md-3 col-sm-8 link-container" onclick="window.location.href = '/items/' + '<%= item.id %>';">
+                    <img src="<%= item.image %>" class="img-fluid rounded p-0 mt-1" width="350">
+                    <figcaption>
+                        <h4><span class="slogan">FEATURED</span>: <small><%= item.title %> - $<%= (Math.round(item.price * 100) / 100).toFixed(2) %></small></h4>
+                    </figcaption>
+                </figure>
+            <% } %>
+
+            
         </div>
     </main>
 
