@@ -11,7 +11,9 @@ exports.new = (req, res) => {
 };
 
 exports.create = (req, res, next) => {
-    let item = new model(req.body);
+    let item = req.body;
+    item.image = '/images/' + req.file.filename;
+    item = new model(req.body);
     item.save()
         .then(item => {
             res.redirect('/items');
@@ -69,6 +71,7 @@ exports.edit = (req, res, next) => {
 
 exports.update = (req, res, next) => {
     let item = req.body;
+    console.log(item);
     let id = req.params.id;
 
     if (!id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -77,9 +80,16 @@ exports.update = (req, res, next) => {
         return next(err);
     }
 
+    if (!item.image) {
+        oldItem = model.findById(id);
+        item.image = oldItem.image;
+    } else {
+        item.image = '/images/' + item.image;
+    }
+
     model.findByIdAndUpdate(id, item, { runValidators: true })
         .then(item => {
-            if (item) {
+            if (item) {                
                 res.redirect('/items/' + id);
             } else {
                 let err = new Error('Item cannot be found');
