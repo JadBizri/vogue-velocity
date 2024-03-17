@@ -53,6 +53,10 @@ itemSchema.statics.findRandom = async function() {
         const randomIndex = Math.floor(Math.random() * count);
         
         const randomItem = await this.findOne().skip(randomIndex);
+
+        if (randomItem.active === false) {
+            return this.findRandom();
+        }
         
         return randomItem;
     } catch (error) {
