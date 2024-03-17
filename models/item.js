@@ -40,6 +40,11 @@ const itemSchema = new Schema({
     { timestamps: true }
 );
 
+//get a random item from the database
+itemSchema.statics.findRandom = function() {
+    return this.aggregate([{ $sample: { size: 1 } }]);
+};
+
 //collection name is 'stories' in the database
 module.exports = mongoose.model('Item', itemSchema);
 
