@@ -1,7 +1,8 @@
 const model = require('../models/item');
 
 exports.index = (req, res) => {
-    model.find().sort({ price: -1 })
+    //sort items by price in descending order and show only active items
+    model.find({ active: true }).sort({ price: -1 })
         .then(items => res.render('item/index', { items }))
         .catch(err => next(err));
 };
