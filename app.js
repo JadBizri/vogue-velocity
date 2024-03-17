@@ -4,12 +4,14 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const itemRoutes = require('./routes/itemRoutes');
 const mongoose = require('mongoose');
-
+const model = require('./models/item');
 
 //create app
 const app = express();
 
 //configure app
+let port = 3000;
+let host = 'localhost';
 const url = 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/?retryWrites=true&w=majority&appName=project3';
 app.set('view engine', 'ejs');
 
