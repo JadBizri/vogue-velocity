@@ -1,8 +1,9 @@
 const model = require('../models/item');
 
 exports.index = (req, res) => {
-    let items = model.findByPriceHighToLow();
-    res.render('item/index', { items });
+    model.find().sort({ price: -1 })
+        .then(items => res.render('item/index', { items }))
+        .catch(err => next(err));
 };
 
 exports.new = (req, res) => {
@@ -10,74 +11,124 @@ exports.new = (req, res) => {
 };
 
 exports.create = (req, res, next) => {
-    let item = req.body;
-
-    if (!item.title || !item.seller || !item.condition || !item.price || !item.details || !req.file) {
-        let err = new Error(`Bad Request: Missing parameters in request body`);
-        err.status = 400;
-        next(err);
-    }
-    else {
-        item.image = '/images/' + req.file.filename;
-        item.totalOffers = 0;
-        item.active = true;
-        model.save(item);
-        res.redirect('/items');
-    }
+    let item = new model(req.body);
+    item.save()
+        .then(item => {
+            res.redirect('/items');
+        })
+        .catch(err => {
+            if (err.name === 'ValidationError') {
+                err.status = 400;
+            }
+            next(err);
+        });
 }
 
 exports.show = (req, res, next) => {
-    var id = req.params.id;
-    var item = model.findById(id);
+    let id = req.params.id;
 
-    if (item) {
-        res.render('item/show', { item });
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid item ID');
+        err.status = 400;
+        return next(err);
     }
-    else {
-        let err = new Error(`Item with id ${id} cannot be found`);
-        err.status = 404;
-        next(err);
-    }
+    model.findById(id)
+        .then(item => {
+            if (item) {
+                res.render('item/show', { item });
+            }
+            else {
+                let err = new Error(`Item cannot be found`);
+                err.status = 404;
+                next(err);
+            }
+        })
+        .catch(err => next(err));
 }
 
 exports.edit = (req, res, next) => {
     let id = req.params.id;
-    var item = model.findById(id);
-
-    if (item) {
-        res.render('item/edit', { item });
-    } else {
-        let err = new Error(`Item with id ${id} cannot be found`);
-        err.status = 404;
-        next(err);
+    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid item ID');
+        err.status = 400;
+        return next(err);
     }
+
+    model.findById(id)
+        .then(item => {
+            if (item) {
+                res.render('./item/edit', { item });
+            } else {
+                let err = new Error('Item cannot be found');
+                err.status = 404;
+                return next(err);
+            }
+        })
+        .catch(err => next(err));
 }
 
 exports.update = (req, res, next) => {
-    let id = req.params.id;
     let item = req.body;
-    if (model.updateById(id, item)) {
-        res.redirect('/items/' + id);
-    } else {
-        let err = new Error(`Item with id ${id} cannot be found`);
-        err.status = 404;
-        next(err);
+    let id = req.params.id;
+
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid item ID');
+        err.status = 400;
+        return next(err);
     }
+
+    model.findByIdAndUpdate(id, item, { runValidators: true })
+        .then(item => {
+            if (item) {
+                res.redirect('/items/' + id);
+            } else {
+                let err = new Error('Item cannot be found');
+                err.status = 404;
+                return next(err);
+            }
+        })
+        .catch(err => {
+            if (err.name === 'ValidationError')
+                err.status = 400;
+            next(err);
+        });
 }
 
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-    if (model.deleteById(id))
-        res.redirect('/items');
-    else {
-        let err = new Error(`Item with id ${id} cannot be found`);
-        err.status = 404;
-        next(err);
+    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
+        let err = new Error('Invalid item ID');
+        err.status = 400;
+        return next(err);
     }
+
+    model.findByIdAndDelete(id)
+        .then(item => {
+            if (item) {
+                res.redirect('/items');
+            } else {
+                let err = new Error('Item cannot be found');
+                err.status = 404;
+                return next(err);
+            }
+        })
+        .catch(err => next(err));
 }
 
-exports.search = (req, res) => {
+exports.search = (req, res, next) => {
     let query = req.query.query;
-    let results = model.showByQuery(query);
-    res.render('item/index', { items: results });
+
+    let filter = {
+        active: true,
+        $or: [
+            { title: { $regex: query, $options: 'i' } },
+            { details: { $regex: query, $options: 'i' } }
+        ]
+    };
+
+    model.find(filter)
+        .then(results => {
+            res.render('item/index', { items: results });
+        })
+        .catch(err => next(err));    
 }
