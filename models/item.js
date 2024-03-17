@@ -4,14 +4,19 @@ const Schema = mongoose.Schema;
 const itemSchema = new Schema({
     title: {
         type: String,
-        required: [true, 'Title is required']
+        required: [true, 'Title is required'],
+        minLength: [3, 'Title must be at least 3 characters'],
+        maxLength: [50, 'Title must be at most 50 characters']
     },
     seller: {
         type: String,
-        required: [true, 'Author is required']
+        required: [true, 'Author is required'],
+        minLength: [3, 'Author must be at least 3 characters'],
+        maxLength: [30, 'Author must be at most 30 characters']
     },
     condition: {
         type: String,
+        enum: ['new', 'like-new', 'good', 'fair', 'other'],
         required: [true, 'Condition is required']
     },
     price: {
@@ -19,10 +24,10 @@ const itemSchema = new Schema({
         required: [true, 'Price is required'],
         min: [0, 'Price must be a positive number']
     },
-    description: {
+    details: {
         type: String,
         required: [true, 'Description is required'],
-        minLength: [6, 'Description must be at least 6 characters']
+        minLength: [5, 'Description must be at least 5 characters']
     },
     image: {
         type: String,
@@ -40,138 +45,20 @@ const itemSchema = new Schema({
     { timestamps: true }
 );
 
-//get a random item from the database
-itemSchema.statics.findRandom = function() {
-    return this.aggregate([{ $sample: { size: 1 } }]);
+//findRandom function to get a random item to be featured on the home page
+itemSchema.statics.findRandom = async function() {
+    try {
+        const count = await this.countDocuments();
+        
+        const randomIndex = Math.floor(Math.random() * count);
+        
+        const randomItem = await this.findOne().skip(randomIndex);
+        
+        return randomItem;
+    } catch (error) {
+        console.error('Error finding random item:', error);
+        throw error;
+    }
 };
 
-//collection name is 'stories' in the database
 module.exports = mongoose.model('Item', itemSchema);
-
-
-
-
-// const items = [
-//     {
-//         id: '1',
-//         title: 'Nike x Carhartt Air Force 1',
-//         seller: 'Vogue Velocity',
-//         condition: 'new',
-//         price: 267.00,
-//         details: 'Size: Men US 11',
-//         image: '/images/shoes.jpg',
-//         totalOffers: 8,
-//         active: true
-//     },
-//     {
-//         id: '2',
-//         title: 'Air Jordan 1 Mid SE Craft',
-//         seller: 'Mo Salah',
-//         condition: 'like-new',
-//         price: 99.99,
-//         details: 'Size: Men US 10.5',
-//         image: '/images/jordans.jpg',
-//         totalOffers: 2,
-//         active: true
-//     },
-//     {
-//         id: '3',
-//         title: 'Nike Black Air Force 1',
-//         seller: 'Vogue Velocity',
-//         condition: 'new',
-//         price: 160.00,
-//         details: 'Size: Men US 11',
-//         image: '/images/aj1-black.jpg',
-//         totalOffers: 0,
-//         active: true
-//     },
-//     {
-//         id: '4',
-//         title: 'White HighTop Converse',
-//         seller: 'Jayden Cobly',
-//         condition: 'fair',
-//         price: 37.00,
-//         details: 'Size: Men US 9',
-//         image: '/images/converse.jpg',
-//         totalOffers: 1,
-//         active: true
-//     },
-//     {
-//         id: '5',
-//         title: 'Black T-Shirt "Yahweh Yireh"',
-//         seller: 'Adam Horowitz',
-//         condition: 'good',
-//         price: 14.00,
-//         details: 'Unisex size M',
-//         image: '/images/black-shirt.jpg',
-//         totalOffers: 1,
-//         active: true
-//     },
-//     {
-//         id: '6',
-//         title: 'Yellow Tracksuit',
-//         seller: 'Vogue Velocity',
-//         condition: 'new',
-//         price: 120.99,
-//         details: 'A 2 piece yellow tracksuit. Size: Large',
-//         image: '/images/main-model.jpg',
-//         totalOffers: 2,
-//         active: true
-//     }
-// ];
-
-// exports.find = () => items;
-
-// exports.findById = id => items.find(item => item.id === id);
-
-// exports.findByPriceHighToLow = () => {
-//     return items.sort((a, b) => b.price - a.price);
-// };
-
-// //find one random item to be featured
-// exports.findRandom = () => {
-//     return items[Math.floor(Math.random() * items.length)];
-// };
-
-// exports.save = function(item) {
-//     item.id = uuidv4();
-//     items.push(item);
-// };
-
-// exports.updateById = function(id, newItem) {
-//     let item = items.find(item => item.id === id);
-//     if (item) {
-//         item.title = newItem.title;
-//         item.seller = newItem.seller;
-//         item.condition = newItem.condition;
-//         item.price = newItem.price;
-//         item.details = newItem.details;
-//         if (newItem.image)
-//         {
-//             item.image = newItem.image;
-//         }
-//         item.totalOffers = newItem.totalOffers;
-//         return true;
-//     }
-//     else return false;
-// };
-
-// exports.deleteById = function(id) {
-//     let index = items.findIndex(item => item.id === id);
-//     if (index !== -1) {
-//         items.splice(index, 1);
-//         return true;
-//     }
-//     else return false;
-// };
-
-// //for search functionality
-// exports.showByQuery = function(query) {
-//     let results = items.filter(item => {
-//         if (item.active === false) {
-//             return false;
-//         }
-//         return item.title.toLowerCase().includes(query.toLowerCase()) || item.seller.toLowerCase().includes(query.toLowerCase()) || item.details.toLowerCase().includes(query.toLowerCase());
-//     });    
-//     return results;
-// }

@@ -12,7 +12,7 @@ const app = express();
 //configure app
 let port = 3000;
 let host = 'localhost';
-const url = 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/?retryWrites=true&w=majority&appName=project3';
+const url = 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/nbda-project3';
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
@@ -29,9 +29,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
 
-//set up routes
-app.get('/', (req, res) => {
-    res.render('index', { item: model.findRandom() });
+//set up route
+app.get('/', (req, res, next) => {
+    // Call the findRandom method on your Mongoose model
+    model.findRandom()
+        .then(item => {
+            // Render the item/show view
+            res.render('index', { item });
+        })
+        .catch(err => next(err));
 });
 
 app.use('/items', itemRoutes);
