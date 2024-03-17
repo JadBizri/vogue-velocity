@@ -3,15 +3,23 @@ const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
 const itemRoutes = require('./routes/itemRoutes');
-const model = require('./models/item');
+const mongoose = require('mongoose');
+
 
 //create app
 const app = express();
 
 //configure app
-const port = 3000;
-const host = 'localhost';
+const url = 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/?retryWrites=true&w=majority&appName=project3';
 app.set('view engine', 'ejs');
+
+//connect to MongoDB
+mongoose.connect(url)
+    .then(() => {
+        app.listen(port, host, () => {
+            console.log('Server is running on port', port);
+        });
+    }).catch((err) => { console.log(err.message); })
 
 //mount middleware
 app.use(express.static('public'));
@@ -40,9 +48,4 @@ app.use((err, req, res, next) => {
     }
     res.status(err.status);
     res.render('error', { error: err });
-});
-
-//start the server
-app.listen(port, host, () => {
-    console.log(`Server is running on port ${port}`);
 });
