@@ -1,0 +1,32 @@
+<%- include('../partials/header.ejs')%>
+    <main class="d-flex justify-content-center mt-auto mb-auto">
+
+        <form class=" border rounded border-warning p-3 w-25" method="POST" enctype="multipart/form-data" action="/register">
+
+            <div class="mb-3">
+                <label class="form-label" for="firstName">First Name</label>
+                <input class="form-control" placeholder="First Name" type="text" id="firstName" name="firstName" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input class="form-control" placeholder="Last Name" type="text" id="lastName" name="lastName" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" placeholder="Email" type="email" name="email" id="email" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" placeholder="Password" type="password" name="password" id="password"
+                    required>
+            </div>
+
+            <button type="submit" class="buttons-dark btn btn-dark w-100">Register</button>
+        </form>
+
+    </main>
+
+    <%- include('../partials/footer.ejs')%>
