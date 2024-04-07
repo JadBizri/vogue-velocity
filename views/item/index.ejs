@@ -26,7 +26,6 @@
                 <% } else { %>
                     <u class="m-0 red">Other</u>
                 <% } %>
-                <p class="m-0">Sold by: <%= item.seller %></p>
                 <hr class="w-75 m-auto">
                 <div class="d-flex justify-content-between">
                     <p class="m-0">$<%= (Math.round(item.price * 100) / 100).toFixed(2) %></p>
@@ -34,9 +33,7 @@
                 </div>
             </div>
         </div>
-
     <% }); }%>
-
 </main>
 
 <%- include('../partials/footer.ejs')%>
