@@ -5,7 +5,7 @@ exports.new = (req, res) => {
         req.flash('error', 'Please logout first');
         return res.redirect('/users/profile');
     }
-    res.render('./user/new');
+    res.render('user/new');
 };
 
 exports.enter = (req, res) => {
@@ -13,7 +13,7 @@ exports.enter = (req, res) => {
         req.flash('error', 'You are already logged in');
         return res.redirect('/users/profile');
     }
-    res.render('./user/login');
+    res.render('user/login');
 };
 
 exports.login = (req, res, next) => {
@@ -27,18 +27,16 @@ exports.login = (req, res, next) => {
                         if (result) {
                             req.session.user = user._id;
                             req.flash('success', 'Login successful');
-                            res.redirect('/users/profile');
+                            res.redirect('/profile');
                         } else {
-                            //console.log('Invalid password');
                             req.flash('error', 'Invalid password');
-                            res.redirect('/users/login');
+                            res.redirect('/login');
                         }
                     })
                     .catch(err => next(err));
             } else {
-                //console.log('User not found');
                 req.flash('error', 'Email not found');
-                res.redirect('/users/login');
+                res.redirect('/login');
             }
         })
         .catch(err => next(err));
@@ -49,16 +47,16 @@ exports.create = (req, res, next) => {
     user.save()
         .then(() => {
             req.flash('success', 'User created successfully, please login');
-            res.redirect('/users/login');
+            res.redirect('/login');
         })
         .catch(err => {
             if (err.name === 'ValidationError') {
                 req.flash('error', err.message);
-                res.redirect('/users/new');
+                res.redirect('/register');
             }
             if (err.code === 11000) {
                 req.flash('error', 'Email already exists');
-                res.redirect('/users/new');
+                res.redirect('/register');
             }
             next(err);
         });
@@ -67,11 +65,11 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     if (!req.session.user) {
         req.flash('error', 'Please login first');
-        return res.redirect('/users/login');
+        return res.redirect('/login');
     }
     let id = req.session.user;
     User.findById(id)
-        .then(user => res.render('./user/profile', { user: user }))
+        .then(user => res.render('user/profile', { user: user }))
         .catch(err => next(err));
 };
 
