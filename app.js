@@ -6,7 +6,6 @@ const itemRoutes = require('./routes/itemRoutes');
 const userRoutes = require('./routes/userRoutes');
 const mongoose = require('mongoose');
 const item = require('./models/item');
-const user = require('./models/user');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
