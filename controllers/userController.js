@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Item = require('../models/item');
 
 exports.new = (req, res) => {
     if (req.session.user) {
@@ -70,8 +71,11 @@ exports.show = (req, res, next) => {
         return res.redirect('/login');
     }
     let id = req.session.user;
-    User.findById(id)
-        .then(user => res.render('user/profile', { user: user }))
+    Promise.all([User.findById(id), Item.find({ seller: id })])
+        .then(results => {
+            const [user, items] = results;
+            res.render('user/profile', { user, items });
+        })
         .catch(err => next(err));
 };
 
