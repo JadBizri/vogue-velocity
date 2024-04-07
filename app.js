@@ -50,10 +50,8 @@ app.use((req, res, next) => {
 
 //set up route
 app.get('/', (req, res, next) => {
-    // Call the findRandom method on your Mongoose model
     item.findRandom()
         .then(item => {
-            // Render the item/show view
             res.render('index', { item });
         })
         .catch(err => next(err));
