@@ -23,8 +23,8 @@
         <p class="h4">Seller: <span class="slogan">You</span></p>
         <p class="h6"><%= item.details %></p>
         <form>
-            <button class="btn buttons-dark btn-dark me-3" type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit">Edit</button>
-            <button class="btn buttons-dark btn-dark" type="submit" formmethod="POST" formaction="/items/<%= item.id%>?_method=DELETE">Delete</button>
+            <button type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit" class="slogan btn btn-dark me-3 border-warning"><i class="bi bi-pencil-square pe-1"></i>Edit</button>
+            <button type="submit" formmethod="POST" formaction="/items/<%= item.id%>?_method=DELETE" class="btn btn-danger"><i class="bi bi-trash3-fill" ></i> Delete</button>
         </form>
         <% } else {%>
         <p class="h4">Seller: <%= item.seller.firstName + ' ' + item.seller.lastName %></p>
