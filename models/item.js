@@ -9,10 +9,9 @@ const itemSchema = new Schema({
         maxLength: [50, 'Title must be at most 50 characters']
     },
     seller: {
-        type: String,
-        required: [true, 'Author is required'],
-        minLength: [3, 'Author must be at least 3 characters'],
-        maxLength: [30, 'Author must be at most 30 characters']
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     },
     condition: {
         type: String,
