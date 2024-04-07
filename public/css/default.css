@@ -131,3 +131,13 @@ a:hover {
     text-align: center;
     padding: 0.5rem 0;
 }
+
+.btn-static-success:hover {
+    background-color: rgb(64, 133, 89);
+    border-color: rgb(64, 133, 89);
+}
+
+.btn-static-danger:hover {
+    background-color: rgb(202, 68, 75);
+    border-color: rgb(202, 68, 75);
+}

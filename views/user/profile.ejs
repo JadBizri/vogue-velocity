@@ -16,7 +16,13 @@
             <div class="item-container m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
                 <figure>
                     <img src="<%= item.image %>" width="200">
-                    <figcaption class="ps-2 h5 pe-2"><%= item.title %></figcaption>
+                    <figcaption class="ps-2 h5 pe-2"><%= item.title %>
+                    <% if (item.active) { %>
+                        <div class="btn btn-static-success btn-success p-1 m-1">Active</div>
+                    <% } else {%>
+                        <div class="btn btn-static-danger btn-danger p-1 m-1">Inactive</div>
+                    <% } %>
+                    </figcaption>
                 </figure>
                 <div class="inner-item ps-2 pe-2">
                     <!-- if statements to format condition string based on value -->
