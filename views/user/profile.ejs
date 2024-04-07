@@ -4,6 +4,9 @@
     <main class="text-center m-auto">
     <p class="h1 text-light text-center">Welcome, <span class="slogan"><%=user.firstName%></span>!</p>
     <p class="h2 text-light text-center">You have no items listed.</p>
+    <form>
+        <button type="submit" formmethod="GET" formaction="/items/new" class="btn btn-dark slogan p-3">Start Selling</button>
+    </form>
 <% } else { %>
     <p class="h1 text-light text-center">Welcome, <span class="slogan"><%=user.firstName%></span>!</p>
     <p class="h3 text-light text-center">Your Items</p>
