@@ -17,7 +17,7 @@ exports.enter = (req, res) => {
 };
 
 exports.login = (req, res, next) => {
-    let email = req.body.email;
+    let email = req.body.email.toLowerCase();
     let password = req.body.password;
     User.findOne({ email: email })
         .then(user => {
@@ -43,8 +43,8 @@ exports.login = (req, res, next) => {
 }
 
 exports.create = (req, res, next) => {
-    console.log("I AM RUNNING HFJDFHDJHFDFDFHUDGFUIUFDHFH");
     console.log(req.body);
+    req.body.email.toLowerCase();
     let user = new User(req.body);
     user.save()
         .then(() => {
