@@ -13,6 +13,12 @@ exports.new = (req, res) => {
 
 exports.create = (req, res, next) => {
     let item = req.body;
+    if (!req.file) {
+        let err = new Error('Please upload an image');
+        err.name = 'ValidationError';
+        err.status = 400;
+        return next(err);
+    }
     item.image = '/images/' + req.file.filename;
     item = new model(req.body);
     item.save()
