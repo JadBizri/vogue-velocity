@@ -24,7 +24,10 @@ exports.create = (req, res, next) => {
     item.image = '/images/' + req.file.filename;
     item = new model(req.body);
     item.save()
-        .then(item => res.redirect('/items'))
+        .then(item => {
+            req.flash('success', 'Item was created successfully');
+            res.redirect('/items');
+        })
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;
