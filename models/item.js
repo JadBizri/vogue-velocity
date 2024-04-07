@@ -22,7 +22,7 @@ const itemSchema = new Schema({
     price: {
         type: Number,
         required: [true, 'Price is required'],
-        min: [0, 'Price must be a positive number']
+        min: [0.01, 'Price must be a positive number']
     },
     details: {
         type: String,
