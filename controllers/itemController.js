@@ -13,6 +13,7 @@ exports.new = (req, res) => {
 
 exports.create = (req, res, next) => {
     let item = req.body;
+    item.seller = req.session.user;
     if (!req.file) {
         let err = new Error('Please upload an image');
         err.name = 'ValidationError';
@@ -41,7 +42,7 @@ exports.show = (req, res, next) => {
         err.status = 400;
         return next(err);
     }
-    model.findById(id)
+    model.findById(id).populate('seller', 'firstName lastName')
         .then(item => {
             if (item) {
                 res.render('item/show', { item });
