@@ -3,7 +3,7 @@ const User = require('../models/user');
 exports.new = (req, res) => {
     if (req.session.user) {
         req.flash('error', 'Please logout first');
-        return res.redirect('/users/profile');
+        return res.redirect('/profile');
     }
     res.render('user/new');
 };
@@ -11,7 +11,7 @@ exports.new = (req, res) => {
 exports.enter = (req, res) => {
     if (req.session.user) {
         req.flash('error', 'You are already logged in');
-        return res.redirect('/users/profile');
+        return res.redirect('/profile');
     }
     res.render('user/login');
 };
@@ -43,6 +43,8 @@ exports.login = (req, res, next) => {
 }
 
 exports.create = (req, res, next) => {
+    console.log("I AM RUNNING HFJDFHDJHFDFDFHUDGFUIUFDHFH");
+    console.log(req.body);
     let user = new User(req.body);
     user.save()
         .then(() => {
