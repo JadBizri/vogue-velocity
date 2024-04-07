@@ -1,0 +1,45 @@
+<%- include('../partials/header.ejs')%>
+
+<% if (items.length === 0) { %>
+    <main class="text-center m-auto">
+    <p class="h1 text-light text-center">Welcome, <span class="slogan"><%=user.firstName%></span>!</p>
+    <p class="h2 text-light text-center">You have no items listed.</p>
+<% } else { %>
+    <p class="h1 text-light text-center">Welcome, <span class="slogan"><%=user.firstName%></span>!</p>
+    <p class="h3 text-light text-center">Your Items</p>
+    <main class="d-flex align-content-between flex-wrap justify-content-center">
+        <% items.forEach(item => { %>
+    
+            <div class="item-container m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
+                <figure>
+                    <img src="<%= item.image %>" width="200">
+                    <figcaption class="ps-2 h5 pe-2"><%= item.title %></figcaption>
+                </figure>
+                <div class="inner-item ps-2 pe-2">
+                    <!-- if statements to format condition string based on value -->
+                    <% if (item.condition === 'new') { %>
+                        <u class="m-0 red">New</u>
+                    <% } else if (item.condition === 'like-new') { %>
+                        <u class="m-0 red">Used - Like New</u>
+                    <% } else if (item.condition === 'good') { %>
+                        <u class="m-0 red">Used - Good</u>
+                    <% } else if (item.condition === 'fair') { %>
+                        <u class="m-0 red">Used - Fair</u>
+                    <% } else { %>
+                        <u class="m-0 red">Other</u>
+                    <% } %>
+                    <hr class="w-75 m-auto">
+                    <div class="d-flex justify-content-between">
+                        <p class="m-0">$<%= (Math.round(item.price * 100) / 100).toFixed(2) %></p>
+                        <p class="m-0 red"><%= item.totalOffers %> Offers</p>
+                    </div>
+                </div>
+                <form class="d-flex justify-content-around p-2">
+                    <button type="submit" formmethod="GET" formaction="/items/<%= item.id%>/edit" class="btn btn-dark slogan"><i class="bi bi-pencil-square pe-1"></i>Edit</button>
+                    <button type="submit" formmethod="POST" formaction="/items/<%= item.id%>?_method=DELETE" class="btn btn-danger"><i class="bi bi-trash3-fill" ></i> Delete</button>
+                </form>
+            </div>
+        <% }); }%>
+    </main>
+
+<%- include('../partials/footer.ejs')%>
