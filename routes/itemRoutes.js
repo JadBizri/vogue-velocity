@@ -3,6 +3,7 @@ const controller = require('../controllers/itemController');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
+const {validateId} = require('../middlewares/validator');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '..', 'public', 'images'));
@@ -21,12 +22,12 @@ router.get('/new', controller.new);
 
 router.post('/', upload.single('image'), controller.create);
 
-router.get('/:id', controller.show);
+router.get('/:id', validateId, controller.show);
 
-router.get('/:id/edit', controller.edit);
+router.get('/:id/edit', validateId, controller.edit);
 
-router.put('/:id', controller.update);
+router.put('/:id', validateId, controller.update);
 
-router.delete('/:id', controller.delete);
+router.delete('/:id', validateId, controller.delete);
 
 module.exports = router;

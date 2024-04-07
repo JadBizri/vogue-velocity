@@ -36,12 +36,6 @@ exports.create = (req, res, next) => {
 
 exports.show = (req, res, next) => {
     let id = req.params.id;
-
-    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid item ID');
-        err.status = 400;
-        return next(err);
-    }
     model.findById(id).populate('seller', 'firstName lastName')
         .then(item => {
             if (item) {
@@ -58,12 +52,6 @@ exports.show = (req, res, next) => {
 
 exports.edit = (req, res, next) => {
     let id = req.params.id;
-    if(!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid item ID');
-        err.status = 400;
-        return next(err);
-    }
-
     model.findById(id)
         .then(item => {
             if (item) {
@@ -81,12 +69,6 @@ exports.update = (req, res, next) => {
     let item = req.body;
     console.log(item);
     let id = req.params.id;
-
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid item ID');
-        err.status = 400;
-        return next(err);
-    }
 
     if (!item.image) {
         oldItem = model.findById(id);
@@ -114,12 +96,6 @@ exports.update = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-    if (!id.match(/^[0-9a-fA-F]{24}$/)) {
-        let err = new Error('Invalid item ID');
-        err.status = 400;
-        return next(err);
-    }
-
     model.findByIdAndDelete(id)
         .then(item => {
             if (item) {
@@ -135,7 +111,6 @@ exports.delete = (req, res, next) => {
 
 exports.search = (req, res, next) => {
     let query = req.query.query;
-
     let filter = {
         active: true,
         $or: [
@@ -143,7 +118,6 @@ exports.search = (req, res, next) => {
             { details: { $regex: query, $options: 'i' } }
         ]
     };
-
     model.find(filter)
         .then(results => {
             res.render('item/index', { items: results });
