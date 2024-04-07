@@ -43,7 +43,7 @@ exports.create = (req, res, next) => {
         .catch(err => {
             if (err.name === 'ValidationError') {
                 req.flash('error', err.message);
-                res.redirect('/register');
+                res.redirect('back');
             }
             if (err.code === 11000) {
                 req.flash('error', 'Email already exists');

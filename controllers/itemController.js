@@ -18,7 +18,8 @@ exports.create = (req, res, next) => {
         let err = new Error('Please upload an image');
         err.name = 'ValidationError';
         err.status = 400;
-        return next(err);
+        req.flash('error', err.message);
+        res.redirect('back');
     }
     item.image = '/images/' + req.file.filename;
     item = new model(req.body);
@@ -27,6 +28,8 @@ exports.create = (req, res, next) => {
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;
+                req.flash('error', err.message);
+                res.redirect('back');
             }
             next(err);
         });
@@ -48,7 +51,6 @@ exports.edit = (req, res, next) => {
 
 exports.update = (req, res, next) => {
     let item = req.body;
-    console.log(item);
     let id = req.params.id;
 
     if (!item.image) {
@@ -63,6 +65,8 @@ exports.update = (req, res, next) => {
         .catch(err => {
             if (err.name === 'ValidationError')
                 err.status = 400;
+                req.flash('error', err.message);
+                res.redirect('back');
             next(err);
         });
 }
