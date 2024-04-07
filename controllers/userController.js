@@ -1,21 +1,9 @@
 const User = require('../models/user');
 const Item = require('../models/item');
 
-exports.new = (req, res) => {
-    if (req.session.user) {
-        req.flash('error', 'Please logout first');
-        return res.redirect('/profile');
-    }
-    res.render('user/new');
-};
+exports.new = (req, res) => res.render('user/new');
 
-exports.enter = (req, res) => {
-    if (req.session.user) {
-        req.flash('error', 'You are already logged in');
-        return res.redirect('/profile');
-    }
-    res.render('user/login');
-};
+exports.enter = (req, res) => res.render('user/login');
 
 exports.login = (req, res, next) => {
     let email = req.body.email.toLowerCase();
@@ -79,7 +67,9 @@ exports.show = (req, res, next) => {
         .catch(err => next(err));
 };
 
-exports.logout = (req, res) => {
-    req.session.destroy();
-    res.redirect('/');
+exports.logout = (req, res, next) => {
+    req.session.destroy(err => {
+        if (err) return next(err);
+        else res.redirect('/');
+    });
 }

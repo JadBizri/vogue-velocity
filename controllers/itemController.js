@@ -23,9 +23,7 @@ exports.create = (req, res, next) => {
     item.image = '/images/' + req.file.filename;
     item = new model(req.body);
     item.save()
-        .then(item => {
-            res.redirect('/items');
-        })
+        .then(item => res.redirect('/items'))
         .catch(err => {
             if (err.name === 'ValidationError') {
                 err.status = 400;
@@ -37,31 +35,14 @@ exports.create = (req, res, next) => {
 exports.show = (req, res, next) => {
     let id = req.params.id;
     model.findById(id).populate('seller', 'firstName lastName')
-        .then(item => {
-            if (item) {
-                res.render('item/show', { item });
-            }
-            else {
-                let err = new Error(`Item cannot be found`);
-                err.status = 404;
-                next(err);
-            }
-        })
+        .then(item => res.render('item/show', { item }))
         .catch(err => next(err));
 }
 
 exports.edit = (req, res, next) => {
     let id = req.params.id;
     model.findById(id)
-        .then(item => {
-            if (item) {
-                res.render('./item/edit', { item });
-            } else {
-                let err = new Error('Item cannot be found');
-                err.status = 404;
-                return next(err);
-            }
-        })
+        .then(item => res.render('./item/edit', { item }))
         .catch(err => next(err));
 }
 
@@ -78,15 +59,7 @@ exports.update = (req, res, next) => {
     }
 
     model.findByIdAndUpdate(id, item, { runValidators: true })
-        .then(item => {
-            if (item) {                
-                res.redirect('/items/' + id);
-            } else {
-                let err = new Error('Item cannot be found');
-                err.status = 404;
-                return next(err);
-            }
-        })
+        .then(item => res.redirect('/items/' + id))
         .catch(err => {
             if (err.name === 'ValidationError')
                 err.status = 400;
@@ -97,15 +70,7 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id;
     model.findByIdAndDelete(id)
-        .then(item => {
-            if (item) {
-                res.redirect('/items');
-            } else {
-                let err = new Error('Item cannot be found');
-                err.status = 404;
-                return next(err);
-            }
-        })
+        .then(item => res.redirect('/items'))
         .catch(err => next(err));
 }
 
