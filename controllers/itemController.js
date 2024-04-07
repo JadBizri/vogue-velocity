@@ -64,7 +64,10 @@ exports.update = (req, res, next) => {
     }
 
     model.findByIdAndUpdate(id, item, { runValidators: true })
-        .then(item => res.redirect('/items/' + id))
+        .then(item => {
+            req.flash('success', 'Item was updated successfully');
+            res.redirect('/items/' + id);
+        })
         .catch(err => {
             if (err.name === 'ValidationError')
                 err.status = 400;
@@ -77,7 +80,10 @@ exports.update = (req, res, next) => {
 exports.delete = (req, res, next) => {
     let id = req.params.id;
     model.findByIdAndDelete(id)
-        .then(item => res.redirect('/items'))
+        .then(item => {
+            req.flash('success', 'Item was deleted successfully');
+            res.redirect('/items');
+        })
         .catch(err => next(err));
 }
 

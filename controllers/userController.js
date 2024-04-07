@@ -6,7 +6,8 @@ exports.new = (req, res) => res.render('user/new');
 exports.enter = (req, res) => res.render('user/login');
 
 exports.login = (req, res, next) => {
-    let email = req.body.email.toLowerCase();
+    req.body.email.toLowerCase();
+    let email = req.body.email;
     let password = req.body.password;
     User.findOne({ email: email })
         .then(user => {
