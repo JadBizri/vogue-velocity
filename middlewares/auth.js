@@ -42,3 +42,25 @@ exports.isSeller = (req, res, next) => {
         })
         .catch(err => next(err));
 }
+
+exports.isNotSeller = (req, res, next) => {
+    let id = req.params.id;
+    let seller = req.session.user;
+    Item.findById(id)
+        .then(item => {
+            if (item) {
+                if (item.seller.equals(seller)) {
+                    let err = new Error('You are not authorized to perform this action');
+                    err.status = 401;
+                    return next(err);
+                } else {
+                    return next();
+                }
+            } else {
+                let err = new Error('Cannot find a story with id ' + id);
+                err.status = 404;
+                return next(err);
+            }
+        })
+        .catch(err => next(err));
+}
