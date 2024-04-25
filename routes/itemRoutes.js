@@ -4,8 +4,8 @@ const offerController = require('../controllers/offerController');
 const router = express.Router();
 const multer = require('multer');
 const path = require('path');
-const { validateId, validateItem, validateResult } = require('../middlewares/validator');
-const { isLoggedIn, isSeller, isNotSeller, isActive, validateOffer } = require('../middlewares/auth');
+const { validateId, validateItem, validateResult, validateOffer } = require('../middlewares/validator');
+const { isLoggedIn, isSeller, isNotSeller, isActive } = require('../middlewares/auth');
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '..', 'public', 'images'));
