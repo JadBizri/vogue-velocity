@@ -1,5 +1,6 @@
 const User = require('../models/user');
 const Item = require('../models/item');
+const Offer = require('../models/offer');
 
 exports.new = (req, res) => res.render('user/new');
 
@@ -60,10 +61,10 @@ exports.show = (req, res, next) => {
         return res.redirect('/login');
     }
     let id = req.session.user;
-    Promise.all([User.findById(id), Item.find({ seller: id })])
+    Promise.all([User.findById(id), Item.find({ seller: id }), Offer.find({ user: id }).populate('item')])
         .then(results => {
-            const [user, items] = results;
-            res.render('user/profile', { user, items });
+            const [user, items, offers] = results;
+            res.render('user/profile', { user, items, offers });
         })
         .catch(err => next(err));
 };
