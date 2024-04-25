@@ -22,17 +22,6 @@ exports.validateLogin = [
     body('password', 'Password must be at least 8 characters and at most 64 characters.').isLength({ min: 8, max: 64 })
 ];
 
-exports.validateResult = (req, res, next) => {
-    let errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        errors.array().forEach(error=>{
-            req.flash('error', error.msg);
-        });
-        return res.redirect('back');
-    }
-    else return next();
-}
-
 exports.validateItem = [
     body('title', 'Title cannot be empty').notEmpty().trim().escape(),
     body('details', 'Item description cannot be empty and must be at least 5 characters').isLength({ min: 5 }).trim().escape(),
