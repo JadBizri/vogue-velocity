@@ -32,8 +32,10 @@
         </form>
         <% } %>
         <% } %>
-        <% if (item.highestOffer > 0) { %>
+        <% if (item.highestOffer > 0 && item.active) { %>
         <p class="h3 mt-3">Current Highest Offer: <span class="slogan">$<%= (Math.round(item.highestOffer * 100) / 100).toFixed(2) %></span></p>
+        <% } else if (!item.active) { %>
+            <p class="h4 red">This item is no longer available.</p>
         <% } %>
     </div>
 </main>
