@@ -1,0 +1,42 @@
+<%- include('../partials/header.ejs')%>
+
+    <% if (offers.length === 0) { %>
+        <div class="text-center m-auto">
+            <p class="h2 text-light text-center">You do not have any offers yet for this product</p>
+        </div>
+    <% } else { %>
+        <p class="h2 text-light text-center mt-3">Offers received for: <%= item.title %></p>
+        <table class="table w-75 ms-auto me-auto mt-4 table-dark">
+            <thead>
+              <tr>
+                <th scope="col">Buyer</th>
+                <th scope="col">Amount</th>
+                <% if (item.active) { %>
+                <th scope="col">Action</th>
+                <% } else { %>
+                <th scope="col">Status</th>
+                <% } %>
+              </tr>
+            </thead>
+            <tbody>
+                <% offers.forEach(offer => { %>
+              <tr>
+                <td><%= offer.user.firstName + ' ' + offer.user.lastName %></td>
+                <td>$<%= (Math.round(offer.amount * 100) / 100).toFixed(2) %></td>
+                <td>
+                    <% if (item.active) { %>
+                    <form method="POST" action="/items/<%= item.id %>/offer/accept">
+                        <input type="hidden" name="buyerId" value="<%= offer.user._id %>">
+                        <input type="hidden" name="amount" value="<%= offer.amount %>">
+                        <button type="submit" class="btn button-yellow">Accept</button>
+                    </form>
+                    <% } else { %>
+                        <%= offer.status %>
+                    <% } %>
+                </td>
+              </tr>
+                <% });} %>
+            </tbody>
+          </table>
+
+<%- include('../partials/footer.ejs')%>
