@@ -39,6 +39,10 @@ const itemSchema = new Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    highestOffer: {
+        type: Number,
+        default: 0
     }
 },
     { timestamps: true }
