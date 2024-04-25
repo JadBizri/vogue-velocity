@@ -8,28 +8,32 @@
     <main class="d-flex align-content-between flex-wrap justify-content-center">
     <% items.forEach(item => { %>
 
-        <div class="item-container m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
+        <div class="item-container d-flex flex-column m-4" onclick="window.location.href = '/items/' + '<%= item.id %>';">
             <figure>
                 <img src="<%= item.image %>" width="200">
                 <figcaption class="ps-2 h5 pe-2"><%= item.title %></figcaption>
             </figure>
-            <div class="inner-item ps-2 pe-2">
+            <div class="ps-2 pe-2 mt-auto">
                 <!-- if statements to format condition string based on value -->
                 <% if (item.condition === 'new') { %>
-                    <u class="m-0 red">New</u>
+                    <p class="m-0 red">New</p>
                 <% } else if (item.condition === 'like-new') { %>
-                    <u class="m-0 red">Used - Like New</u>
+                    <p class="m-0 red">Used - Like New</p>
                 <% } else if (item.condition === 'good') { %>
-                    <u class="m-0 red">Used - Good</u>
+                    <p class="m-0 red">Used - Good</p>
                 <% } else if (item.condition === 'fair') { %>
-                    <u class="m-0 red">Used - Fair</u>
+                    <p class="m-0 red">Used - Fair</p>
                 <% } else { %>
-                    <u class="m-0 red">Other</u>
+                    <p class="m-0 red">Other</p>
                 <% } %>
                 <hr class="w-75 m-auto">
                 <div class="d-flex justify-content-between">
                     <p class="m-0">$<%= (Math.round(item.price * 100) / 100).toFixed(2) %></p>
+                    <% if (item.totalOffers == 1) { %>
+                        <p class="m-0 red"><%= item.totalOffers %> Offer</p>
+                    <% }  else {%>
                     <p class="m-0 red"><%= item.totalOffers %> Offers</p>
+                    <% } %>
                 </div>
             </div>
         </div>

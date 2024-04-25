@@ -25,6 +25,15 @@
         <% } else {%>
         <p class="h4">Seller: <%= item.seller.firstName + ' ' + item.seller.lastName %></p>
         <p class="h6"><%= item.details %></p>
+        <% if (item.active) { %>
+        <form class="d-flex mt-5" action="/items/<%= item._id %>/offer" method="POST">
+                <input class="form-control" type="number" name="amount" placeholder="0" step="0.01" min="0.01" required>
+                <button class="buttons-dark btn btn-dark w-100 ms-3" type="submit">Make an Offer</button>
+        </form>
+        <% } %>
+        <% } %>
+        <% if (item.highestOffer > 0) { %>
+        <p class="h3 mt-3">Current Highest Offer: <span class="slogan">$<%= (Math.round(item.highestOffer * 100) / 100).toFixed(2) %></span></p>
         <% } %>
     </div>
 </main>
