@@ -1,4 +1,5 @@
 const model = require('../models/item');
+const Offer = require('../models/offer');
 
 exports.index = (req, res) => {
     //sort items by price in descending order and show only active items
@@ -71,20 +72,21 @@ exports.update = (req, res, next) => {
         .catch(err => {
             if (err.name === 'ValidationError')
                 err.status = 400;
-                req.flash('error', err.message);
-                res.redirect('back');
+            req.flash('error', err.message);
+            res.redirect('back');
             next(err);
         });
 }
 
 exports.delete = (req, res, next) => {
     let id = req.params.id;
-    model.findByIdAndDelete(id)
-        .then(item => {
-            req.flash('success', 'Item was deleted successfully');
-            res.redirect('/items');
-        })
-        .catch(err => next(err));
+    Promise.all([
+        model.findByIdAndDelete(id),
+        Offer.deleteMany({ item: id })
+    ]).then(() => {
+        req.flash('success', 'Item was deleted successfully');
+        res.redirect('/items');
+    }).catch(err => next(err));
 }
 
 exports.search = (req, res, next) => {
@@ -100,5 +102,5 @@ exports.search = (req, res, next) => {
         .then(results => {
             res.render('item/index', { items: results });
         })
-        .catch(err => next(err));    
+        .catch(err => next(err));
 }
