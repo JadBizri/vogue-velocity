@@ -64,3 +64,18 @@ exports.isNotSeller = (req, res, next) => {
         })
         .catch(err => next(err));
 }
+
+exports.isActive = (req, res, next) => {
+    let id = req.params.id;
+    Item.findById(id)
+        .then(item => {
+            if (item.active) {
+                return next();
+            } else {
+                let err = new Error('This item is no longer available');
+                err.status = 404;
+                return next(err);
+            }
+        })
+        .catch(err => next(err));
+}
