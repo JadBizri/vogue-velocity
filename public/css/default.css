@@ -54,6 +54,24 @@ footer {
     color: var(--main-yellow);
 }
 
+.active.buttons-dark {
+    background-color: var(--main-yellow);
+    color: black;
+}
+
+.tab-btn {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.tab-btn-left {
+    border-top-right-radius: 0;
+}
+
+.tab-btn-right {
+    border-top-left-radius: 0;
+}
+
 .navbar-custom {
     background-color: var(--main-yellow) !important;
 }
