@@ -3,10 +3,6 @@
     --wow-red: #FF4136;
 }
 
-* {
-    font-family: "Bebas Neue", sans-serif !important;
-}
-
 html {
     box-sizing: border-box;
 }
@@ -51,6 +47,16 @@ footer {
 .buttons-dark,
 .buttons-dark:hover,
 .buttons-yellow:hover {
+    color: var(--main-yellow);
+}
+
+.button-yellow {
+    background-color: var(--main-yellow);
+    color: black;
+}
+
+.button-yellow:hover {
+    background-color: black;
     color: var(--main-yellow);
 }
 
