@@ -16,7 +16,7 @@ const app = express();
 
 //configure app
 const url = process.env.MONGO_DB_URL;
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
