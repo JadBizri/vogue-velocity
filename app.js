@@ -16,12 +16,13 @@ const app = express();
 
 //configure app
 const url = process.env.MONGO_DB_URL;
+const port = 3000;
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
 mongoose.connect(url)
     .then(() => {
-        console.log('Server is running');
+        app.listen(port, () => console.log('Server is running on port', port));
     }).catch((err) => { console.log(err.message); })
 
 //mount middleware
