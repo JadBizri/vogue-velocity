@@ -9,6 +9,7 @@ const item = require('./models/item');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+require('dotenv').config();
 
 //create app
 const app = express();
@@ -16,7 +17,7 @@ const app = express();
 //configure app
 let port = 3000;
 let host = 'localhost';
-const url = 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/nbda-project3';
+const url = process.env.MONGO_DB_URL;
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
