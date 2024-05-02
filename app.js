@@ -15,17 +15,13 @@ require('dotenv').config();
 const app = express();
 
 //configure app
-let port = 3000;
-let host = 'localhost';
 const url = process.env.MONGO_DB_URL;
 app.set('view engine', 'ejs');
 
 //connect to MongoDB
 mongoose.connect(url)
     .then(() => {
-        app.listen(port, host, () => {
-            console.log('Server is running on port', port);
-        });
+        console.log('Server is running');
     }).catch((err) => { console.log(err.message); })
 
 //mount middleware
@@ -38,7 +34,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: { maxAge: 60 * 60 * 1000 },
-    store: MongoStore.create({ mongoUrl: 'mongodb+srv://jadb:jadb123@project3.1gd4hzw.mongodb.net/nbda-project3' })
+    store: MongoStore.create({ mongoUrl: url })
 }));
 app.use(flash());
 
