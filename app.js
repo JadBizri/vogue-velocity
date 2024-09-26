@@ -9,6 +9,7 @@ const item = require('./models/item');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
+const cors = require('cors');
 require('dotenv').config();
 
 //create app
@@ -30,6 +31,7 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
+app.use(cors());
 app.use(session({
     secret: '123456',
     resave: false,
