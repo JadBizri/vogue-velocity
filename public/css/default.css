@@ -103,19 +103,20 @@ a,
     cursor: pointer;
 }
 
-.link-container:hover {
-    transform: scale(1.07);
-}
+@media (min-width: 991px) {
+    .link-container:hover {
+        transform: scale(1.07);
+    }
 
-a:hover {
-    transform: scale(1.3);
+    a:hover {
+        transform: scale(1.3);
+    }
 }
 
 .item-container {
     border-radius: 0.3em;
     width: 250px;
     color: black;
-    border-radius: 0.3em;
     box-sizing: content-box;
     background-color: var(--main-yellow);
     transition: 0.2s;
